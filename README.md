@@ -20,7 +20,6 @@ Traditional open-source fake job detectors rely almost entirely on standard text
 
 ---
 
-
 ## ⚙️ How It Works (System Architecture & Execution Flow)
 
 ```mermaid
@@ -39,28 +38,30 @@ graph TD
     G --> H[Interactive Modal Report Pop-Up <br/> Final Risk Badge & Red Flags]
 
 
-1. **Input Ingestion:** The user submits a job description and optional application link through a clean, light-mode Streamlit dashboard.
-2. **Feature Vectorization & Classification (Tier 1):** The raw text is transformed into mathematical vectors using `TfidfVectorizer` and evaluated by a trained `LogisticRegression` classifier to generate a base scam probability score.
-3. **Contextual Security Scan (Tier 2):** The rule engine inspects the text for suspicious keywords and checks the domain structure of the URL, applying targeted score penalties if high-risk flags are detected.
-4. **Score Aggregation & Centered Modal Output:** The ML score and heuristic penalties merge to calculate the final risk percentage (0–100%). Results launch in a centered pop-up modal displaying a risk badge, metric breakdown, and specific contextual red flags.
+1. Input Ingestion: The user submits a job description and optional application link through a clean,   light-mode Streamlit dashboard.
 
----
+2. Feature Vectorization & Classification (Tier 1): The raw text is transformed into mathematical vectors using TfidfVectorizer and evaluated by a trained LogisticRegression classifier to generate a base scam probability score.
 
-## 📋 Requirements & Dependencies
+3. Contextual Security Scan (Tier 2): The rule engine inspects the text for suspicious keywords and checks the domain structure of the URL, applying targeted score penalties if high-risk flags are detected.
 
-To run this project locally or deploy it to the cloud, ensure you have **Python 3.9+** installed along with the following libraries:
+4. Score Aggregation & Centered Modal Output: The ML score and heuristic penalties merge to calculate the final risk percentage (0–100%). Results launch in a centered pop-up modal displaying a risk badge, metric breakdown, and specific contextual red flags.
 
-### Python Packages (`requirements.txt`)
-* `streamlit` — Interactive Web Framework & UI
-* `scikit-learn` — Machine Learning Pipeline (TF-IDF & Logistic Regression)
-* `pandas` — Data Processing & Manipulation
-* `joblib` — Serialization and loading of model artifacts (`.pkl` files)
 
----
+📋 Requirements & Dependencies
+To run this project locally or deploy it to the cloud, ensure you have Python 3.9+ installed along with the following libraries:
 
-## 📁 Repository Structure
+Python Packages (requirements.txt)
+streamlit — Interactive Web Framework & UI
 
-```text
+scikit-learn — Machine Learning Pipeline (TF-IDF & Logistic Regression)
+
+pandas — Data Processing & Manipulation
+
+joblib — Serialization and loading of model artifacts (.pkl files)
+
+
+📁 Repository Structure
+
 RecruitShield-AI/
 │
 ├── app.py                   # Main Streamlit web application & UI engine
@@ -73,27 +74,18 @@ RecruitShield-AI/
     └── tfidf_vectorizer.pkl # Fitted TF-IDF feature transformer
 
 
-
-
 🛠️ Local Setup & Execution
 
 1. Clone the Repository:
-
 git clone [https://github.com/AzkaaMulla/RecruitShield-AI.git](https://github.com/AzkaaMulla/RecruitShield-AI.git)
-cd RecruitShield-AI
 
 2. Install Dependencies:
-
 pip install -r requirements.txt
 
-
 3. Train Model Artifacts (If running for the first time):
-
 python train_model.py
 
-
 4. Launch the Streamlit App:
-
 streamlit run app.py
 
 
@@ -101,6 +93,7 @@ streamlit run app.py
 Zero Persistent Data Storage: Input text, company details, and application URLs are processed strictly in-memory during evaluation and immediately discarded.
 
 Proactive Risk Mitigation: Detects phishing traps, financial scam requirements, and unverified contact channels before users interact with fraudulent recruiters.
+
 
 👤 Author
 Developer: Azkaa Mulla
