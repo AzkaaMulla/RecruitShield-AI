@@ -20,28 +20,23 @@ Traditional open-source fake job detectors rely almost entirely on standard text
 
 ---
 
+
 ## ⚙️ How It Works (System Architecture & Execution Flow)
 
-[User Input: Job Text & Application URL]
-│
-▼
-┌─────────────────────────────────────────┐
-│     Two-Tier Hybrid Verification        │
-├────────────────────┬────────────────────┤
-│ Tier 1: ML Engine  │ Tier 2: Heuristics │
-│  (TF-IDF + Model)  │  (Rule Engine)     │
-└─────────┬──────────┴─────────┬──────────┘
-│                    │
-▼                    ▼
-[Base ML Score]   +   [Rule Penalties]
-│               │
-└───────┬───────┘
-│
-▼
-[Combined Risk Score (%)]
-│
-▼
-[Interactive Modal Report Pop-Up]
+```mermaid
+graph TD
+    A[User Input: Job Text & Application URL] --> B[Two-Tier Hybrid Verification Engine]
+    
+    B --> C[Tier 1: ML Engine <br/> TF-IDF + Logistic Regression]
+    B --> D[Tier 2: Heuristic Rule Engine <br/> Keyword & URL Check]
+    
+    C --> E[Base ML Scam Probability Score]
+    D --> F[Heuristic Penalty Points]
+    
+    E --> G[Score Aggregation <br/> Combine ML Score + Penalties]
+    F --> G
+    
+    G --> H[Interactive Modal Report Pop-Up <br/> Final Risk Badge & Red Flags]
 
 
 1. **Input Ingestion:** The user submits a job description and optional application link through a clean, light-mode Streamlit dashboard.
